@@ -110,9 +110,10 @@
       "@public/*": ["public/*"],
       "@routes/*": ["routes/*"],
       "@models/*": ["models/*"],
-      "@services/*": ["./services/*"],
+      "@services/*": ["services/*"],
       "@controllers/*": ["controllers/*"],
-      "@db/*": ["db/*"]
+      "@db/*": ["db/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "include": [
