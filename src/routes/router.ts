@@ -1,6 +1,6 @@
 import { controller } from "../controllers/commonController";
-import { recetaController } from "../controllers/recetaController";
 import { Router } from "express";
+import routerRecetas from "./routerRecetas";
 
 const router = Router();
 
@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   );
 });
 
-router.get("/recetas", recetaController.getRecetas);
+router.get("/recetas", routerRecetas);
 
 router.all("*", controller.sendNotFoundError);
 
