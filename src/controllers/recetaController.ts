@@ -1,4 +1,4 @@
-import RequestHandler from "../utils/requestHandler";
+import RequestHandler from "@utils/requestHandler";
 import { Request, Response } from "express";
 import { controller } from "./commonController";
 

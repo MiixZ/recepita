@@ -5,7 +5,7 @@ import routerRecetas from "./routerRecetas";
 const router = Router();
 
 // RECETAS
-router.get("/recetas", routerRecetas);
+router.use("/recetas", routerRecetas);
 
 // DEFAULT
 router.get("/", controller.sendDefaultMessage);
