@@ -1,29 +1,31 @@
 import { Response } from "express";
+import { response } from "./response";
 
-// TOD: Agregar un tipo de dato para el error y los datos.
-class RequestHandler {
-  static sendSuccess(res: Response, data: any) {
-    res.status(200).json({
+export default class RequestHandler {
+  static sendSuccess(res: Response, data: any): Response<response> {
+    const response: response = {
       success: true,
       data: data,
       error: null,
-    });
+    };
+
+    return res.status(200).json(response);
   }
 
   static sendError(
     res: Response,
-    message: String = "Internal Server Error",
+    message: string = "Internal Server Error",
     statusCode: number = 500
-  ) {
-    res.status(statusCode).json({
+  ): Response<response> {
+    const response: response = {
       success: false,
       data: null,
       error: {
         message: message,
         code: statusCode,
       },
-    });
+    };
+
+    return res.status(statusCode).json(response);
   }
 }
-
-export default RequestHandler;
