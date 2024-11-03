@@ -19,3 +19,7 @@ La licencia que se ha utilizado para este proyeto es la licencia Apache 2.0. La 
 > Hito 1.
 
 La descripción del problema que planteamos y por consiguiente la lógica de negocio que se va a seguir, se encuentra en el fichero [hito1.md](doc/hito1/hito1.md).
+
+> Hito 2.
+
+La sección de pruebas y tests que se han realizado en el proyecto, se encuentran en el fichero [hito2.md](doc/hito2/hito2.md).
