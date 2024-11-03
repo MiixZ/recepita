@@ -4,13 +4,32 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "npm run dev"
+    "dev": "nodemon -x ts-node -r tsconfig-paths/register src/app.ts",
+    "start": "node dist/app.js",
+    "build": "tsc && npm test",
+    "test": "jest --config jest.config.ts --verbose --silent",
+    "test:watch": "jest --config jest.config.ts --watchAll --verbose --silent"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.0"
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "mysql2": "^3.11.3",
+    "nodemon": "^3.1.7",
+    "tsconfig-paths": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.7.5",
+    "@types/supertest": "^6.0.2",
+    "dotenv": "^16.4.5",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
   }
 }
