@@ -74,6 +74,12 @@ Para la integración continua de las pruebas, se ha configurado un flujo de trab
 
 ![GitHub Actions](../../img/github_actions.png)
 
+Los tests que se ejecutan son simples:
+
+- Test que comprueba que la respuesta devuelta es siempre un JSON.
+- Tests que comprueba que se devuelve una receta (por ahora una cadena simple) y siempre con el mismo formato.
+- Test que comprueba que se devuelve un JSON con un error cuando no se encuentra el endpoint, en este caso el endpoint de una receta.
+
 ### Justificación:
 
 GitHub Actions es ideal para la integración continua porque:
