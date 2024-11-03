@@ -50,7 +50,7 @@ Jest es ideal como biblioteca de aserciones porque:
 - **Mocha y Chai**: Mocha es un marco de pruebas y Chai es una biblioteca de aserciones. Juntos, ofrecen una combinación poderosa y flexible para pruebas. Sin embargo, Jest proporciona una solución todo en uno que simplifica la configuración y el uso.
 - **Jasmine**: Jasmine es un marco de pruebas que incluye una biblioteca de aserciones. Aunque es una opción sólida, Jest ha ganado popularidad en la comunidad de JavaScript por su velocidad y facilidad de uso.
 
-## INTEGRACIÓN DE PRUEBAS
+## ⚙️ INTEGRACIÓN DE PRUEBAS
 
 Como ya hemos descrito anteriormente, los scripts personalizados definidos en el archivo [package.json](../../package.json) permiten definir comandos personalizados, en los que además podemos especificar a la hora de buildear nuestro proyecto que se ejecuten las pruebas.
 
@@ -68,8 +68,22 @@ Para ello, en el script para buildear nuestro proyecto (traducir TypeScript a Ja
 
 Con el primer comando ejecutamos el proyecto en desarrollo (para probarlo nosotros en local), con el segundo comando ejecutamos el proyecto en producción (ya compilado), con el tercer comando compilamos el proyecto y ejecutamos las pruebas, con el cuarto comando ejecutamos las pruebas y con el quinto comando ejecutamos las pruebas en modo continuo (para que se ejecute automáticamente cuando hagamos un cambio y no tener que ejecutarlo continuamente).
 
-## GITHUB ACTIONS
+## 🦾 GITHUB ACTIONS
 
 Para la integración continua de las pruebas, se ha configurado un flujo de trabajo en GitHub Actions que ejecuta las pruebas automáticamente cada vez que se realiza un _push_ o _pull request_ en la rama principal del repositorio. Esto garantiza que las pruebas definidas en el [fichero](../../tests/general.test.ts) por nuestro script se ejecuten de forma automática y se verifique la integridad del código en cada cambio. El flujo de trabajo se encuentra en el archivo [ci.yml](../../.github/workflows/ci.yml). Un ejemplo de esto puede verse en la siguiente imagen:
 
 ![GitHub Actions](../../img/github_actions.png)
+
+### Justificación:
+
+GitHub Actions es ideal para la integración continua porque:
+
+- Es una herramienta nativa de GitHub que permite automatizar flujos de trabajo.
+- Ofrece una integración perfecta con repositorios de GitHub, lo que facilita la configuración y el uso.
+- Proporciona una amplia gama de acciones predefinidas y personalizables para ejecutar pruebas, despliegues y otras tareas.
+
+### Alternativas consideradas:
+
+- **Travis CI**: Travis CI es una plataforma de integración continua basada en la nube que permite ejecutar pruebas y despliegues automáticamente. Aunque es una opción popular, GitHub Actions ofrece una integración más estrecha con GitHub y una configuración más sencilla.
+- **CircleCI**: CircleCI es otra plataforma de integración continua que permite ejecutar pruebas y despliegues automáticamente. Aunque es una opción sólida, GitHub Actions es más fácil de configurar y usar.
+- **Jenkins**: Jenkins es una herramienta de automatización de código abierto que permite ejecutar flujos de trabajo complejos. Aunque es una opción poderosa, GitHub Actions es más fácil de configurar y usar para proyectos más pequeños.
