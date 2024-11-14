@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ensalada César",
+    "ingredientes": [
+      "lechuga romana",
+      "pollo a la parrilla",
+      "queso parmesano",
+      "crutones",
+      "aderezo César"
+    ],
+    "kilocalorias": 250,
+    "recomendacion_nutricional": "Ideal para una comida ligera y balanceada."
+  },
+  {
+    "id": 2,
+    "nombre": "Salmón al horno",
+    "ingredientes": [
+      "salmón",
+      "limón",
+      "ajo",
+      "aceite de oliva",
+      "hierbas frescas"
+    ],
+    "kilocalorias": 350,
+    "recomendacion_nutricional": "Rico en omega-3, perfecto para una dieta saludable."
+  },
+  {
+    "id": 3,
+    "nombre": "Tacos de pollo",
+    "ingredientes": [
+      "tortillas de maíz",
+      "pollo desmenuzado",
+      "cebolla",
+      "cilantro",
+      "salsa"
+    ],
+    "kilocalorias": 400,
+    "recomendacion_nutricional": "Una opción deliciosa y nutritiva para el almuerzo."
+  },
+  {
+    "id": 4,
+    "nombre": "Sopa de cebolla",
+    "ingredientes": [
+      "cebolla",
+      "caldo de res",
+      "queso gruyere",
+      "pan",
+      "mantequilla"
+    ],
+    "kilocalorias": 300,
+    "recomendacion_nutricional": "Una sopa reconfortante y rica en sabor, ideal para días fríos."
+  }
+]

@@ -4,6 +4,8 @@
 
 En este proyecto, el gestor de tareas elegido es el sistema de scripts de _npm_, que es el estándar en proyectos JavaScript/TypeScript y simplifica la integración de comandos personalizados. Esto permite ejecutar pruebas con _npm run test_ (comando personalizado creado por mí), asegurando un comando simple y consistente para entornos locales y de CI/CD (integración y entrega continua). npm es ampliamente adoptado, fácil de configurar, y permite definir scripts adicionales (como test:watch para pruebas en modo continuo). Para ver más información acerca de npm, puedes visitar su [página oficial](https://www.npmjs.com/). Para ver más detalles acerca del script, puedes visitar el archivo [package.json](../../package.json), en los subcampos 'test' y 'test:watch' del campo 'scripts'.
 
+Para instalar npm, simplemente necesitas instalar Node.js, que incluye npm de forma predeterminada. Puedes descargar Node.js desde su [página oficial](https://nodejs.org/). No harán falta configuraciones especiales (a parte de los scripts personalizados explicados posteriormente).
+
 ### Justificación:
 
 npm es ideal porque:
