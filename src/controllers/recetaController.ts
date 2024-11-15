@@ -41,4 +41,17 @@ export class recetaController extends controller {
       sendError(res, error.message!);
     }
   }
+
+  static async getRecetasByNombre(req: Request, res: Response) {
+    try {
+      const nombre = req.params.nombre;
+      const recetasByNombre = recetas.filter((receta) =>
+        receta.nombre.toLowerCase().includes(nombre.toLowerCase())
+      );
+
+      sendSuccess(res, recetasByNombre);
+    } catch (error: any) {
+      sendError(res, error.message!);
+    }
+  }
 }
