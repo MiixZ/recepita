@@ -5,6 +5,7 @@ export interface Receta {
   nombre: string;
   ingredientes: Ingrediente[];
   recomendacion_nutricional: string;
+  kilocalorias: number;
 }
 
 export function calcularKcalorias(receta: Receta): number {
