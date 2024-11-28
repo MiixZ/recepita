@@ -23,3 +23,7 @@ La descripción del problema que planteamos y por consiguiente la lógica de neg
 > Hito 2.
 
 La sección de pruebas y tests que se han realizado en el proyecto, se encuentran en el fichero [hito2.md](doc/hito2/hito2.md).
+
+> Hito 3.
+
+La sección de pruebas y tests que se han realizado en el proyecto, se encuentran en el fichero [hito3.md](doc/hito3/hito3.md).
