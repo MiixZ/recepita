@@ -2,6 +2,7 @@ import supertest from "supertest";
 import { app, server } from "../src/app";
 import { generalTest } from "./general/generalTest";
 import { recetaTest } from "./recetas/recetaTests";
+import { ingredienteTest } from "./ingredientes/ingredienteTests";
 
 const api = supertest(app);
 
@@ -29,6 +30,25 @@ test("Tests de recetas por ingrediente que devuelven algo", async () =>
 
 test("Tests de recetas por ingrediente que devuelven algo fallidos", async () =>
   recetaTest.recetaByIngredienteTestReturnsNothing(api));
+
+// INGREDIENTES
+
+test("Tests de ingredientes", async () => ingredienteTest.ingredienteTest(api));
+
+test("Tests de ingredientes fallidos", async () =>
+  ingredienteTest.ingredienteTestFail(api));
+
+test("Tests de ingredientes por ID", async () =>
+  ingredienteTest.ingredienteByIdTest(api));
+
+test("Tests de ingredientes por ID fallidos", async () =>
+  ingredienteTest.ingredienteByIdTestFail(api));
+
+test("Tests de ingredientes por nombre", async () =>
+  ingredienteTest.ingredienteByNombreTest(api));
+
+test("Tests de ingredientes por nombre fallidos", async () =>
+  ingredienteTest.ingredienteByNombreTestFail(api));
 
 afterAll(() => {
   // TODO: Cerrar base de datos.

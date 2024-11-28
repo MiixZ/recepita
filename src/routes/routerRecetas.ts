@@ -7,7 +7,7 @@ const routerRecetas = Router();
 routerRecetas.get("/", recetaController.getRecetas);
 routerRecetas.get("/:id", recetaController.getReceta);
 
-// INGREDIENTES
+// POR INGREDIENTES
 routerRecetas.get(
   "/ingrediente/:ingrediente",
   recetaController.getRecetasByIngrediente
