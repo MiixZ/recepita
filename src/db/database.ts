@@ -4,7 +4,6 @@ import mysql2, {
   RowDataPacket,
 } from "mysql2/promise";
 
-import dotenv from "dotenv";
 import {
   DB_HOST,
   DB_NAME,
@@ -12,8 +11,6 @@ import {
   DB_PORT,
   DB_USER,
 } from "@public/constants";
-
-dotenv.config();
 
 const config: ConnectionOptions = {
   host: DB_HOST,
