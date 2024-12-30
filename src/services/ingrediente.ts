@@ -1,6 +1,6 @@
 import { Ingrediente } from "@models/ingrediente";
 import recetas from "@db/recetas.json";
-import logger from "@public/logger"; // Ajusta la ruta según tu estructura de proyecto
+import logger from "@public/logger";
 
 export class ingredienteService {
   static getIngredientes(): Ingrediente[] {

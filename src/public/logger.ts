@@ -1,4 +1,5 @@
 import { createLogger, format, transports } from "winston";
+import { NODE_ENV } from "./constants";
 
 const logger = createLogger({
   level: "info",
@@ -15,7 +16,7 @@ const logger = createLogger({
   ],
 });
 
-if (process.env.NODE_ENV !== "production") {
+if (NODE_ENV !== "production") {
   logger.add(
     new transports.Console({
       format: format.combine(format.colorize(), format.simple()),

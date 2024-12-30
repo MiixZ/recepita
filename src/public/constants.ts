@@ -1,1 +1,4 @@
-export const PORT: number = 3000;
+const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, PORT, NODE_ENV } =
+  process.env;
+
+export { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, PORT, NODE_ENV };
