@@ -164,4 +164,4 @@ Time:        8.212 s
 
 ## 📦 GITHUB PACKAGES
 
-Se ha configurado el repositorio para que acepte el [paquete publicado](https://github.com/MiixZ/recepita-package/pkgs/npm/recepita-package).
+Se ha publicado el paquete con el contenedor de la aplicación en GitHub Packages siguiendo la [guía oficial](https://docs.github.com/es/packages/quickstart).
