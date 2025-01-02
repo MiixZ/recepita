@@ -1,17 +1,19 @@
-import { Ingrediente } from "@models/ingrediente";
-import recetas from "@db/recetas.json";
+import { Ingrediente, IngredienteDB } from "@models/ingrediente";
 import logger from "@public/logger";
+import database from "@db/database";
+import { ingredientesDBToIngredientes } from "mapper/ingredientes";
 
 export class ingredienteService {
-  static getIngredientes(): Ingrediente[] {
+  static async getIngredientes(): Promise<Ingrediente[]> {
     logger.info("Fetching all ingredients");
 
-    const allIngredientes = recetas.reduce((acc, receta) => {
-      return acc.concat(receta.ingredientes);
-    }, [] as Ingrediente[]);
+    const allIngredientes = (await database.query(
+      "SELECT * FROM Ingrediente"
+    )) as unknown as IngredienteDB[];
 
-    const filteredIngredientes =
-      this.filterIngredientesByNombre(allIngredientes);
+    const filteredIngredientes = this.filterIngredientesByNombre(
+      ingredientesDBToIngredientes(allIngredientes)
+    );
 
     logger.info(
       "Filtered ingredients by name, total: %d",
@@ -21,35 +23,58 @@ export class ingredienteService {
     return filteredIngredientes;
   }
 
-  static getIngredienteById(id: string): Ingrediente | null {
+  static async getIngredienteById(id: string): Promise<Ingrediente | null> {
     logger.info("Fetching ingredient with id: %s", id);
 
-    const allIngredientes = this.getIngredientes();
+    const result = (await database.query(
+      "SELECT * FROM Ingrediente WHERE id = ?",
+      [id]
+    )) as unknown as IngredienteDB[];
 
-    const ingrediente = allIngredientes.find(
-      (ingrediente) => String(ingrediente.id) === id
-    );
-
-    if (!ingrediente) {
+    if (result.length === 0) {
       logger.warn("Ingredient with id %s not found", id);
       return null;
     }
 
+    const ingredienteDB = result[0] as IngredienteDB;
+    const ingrediente = ingredientesDBToIngredientes([ingredienteDB])[0];
+
     return ingrediente;
   }
 
-  static getIngredientesByNombre(nombre: string): Ingrediente[] {
+  static async getIngredientesByNombre(nombre: string): Promise<Ingrediente[]> {
     logger.info("Fetching ingredients with name containing: %s", nombre);
 
-    const allIngredientes = this.getIngredientes().filter((ingrediente) =>
-      ingrediente.nombre.toLowerCase().includes(nombre.toLowerCase())
-    );
+    const result = (await database.query(
+      "SELECT * FROM Ingrediente WHERE LOWER(nombre) LIKE ?",
+      [`%${nombre.toLowerCase()}%`]
+    )) as unknown as IngredienteDB[];
 
-    if (allIngredientes.length === 0) {
+    if (result.length === 0) {
       logger.warn("No ingredients found with name containing: %s", nombre);
     }
 
-    return allIngredientes;
+    const ingredientesDB = result as IngredienteDB[];
+    const ingredientes = ingredientesDBToIngredientes(ingredientesDB);
+
+    return ingredientes;
+  }
+
+  static async getIngredientesByReceta(
+    idReceta: number
+  ): Promise<Ingrediente[]> {
+    logger.info("Fetching ingredients from recipe with id: %s", idReceta);
+
+    const result = (await database.query(
+      "SELECT * FROM Ingrediente WHERE id IN (SELECT ingrediente_id FROM RecetaIngrediente WHERE receta_id = ?)",
+      [idReceta]
+    )) as unknown as IngredienteDB[];
+
+    if (result.length === 0) {
+      logger.warn("No ingredients found for recipe with id: %s", idReceta);
+    }
+
+    return ingredientesDBToIngredientes(result);
   }
 
   private static filterIngredientesByNombre(ingredientes: Ingrediente[]) {

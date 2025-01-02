@@ -14,6 +14,14 @@ export interface Ingrediente {
   peso: number;
 }
 
+export interface IngredienteDB {
+  id: number;
+  nombre: string;
+  gramos_proteina: number;
+  gramos_carbohidratos: number;
+  gramos_grasa: number;
+}
+
 export function calcularKcalorias(ingrediente: Ingrediente): number {
   const { proteinas, carbohidratos, grasas } = ingrediente.macronutrientes;
 
