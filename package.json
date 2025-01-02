@@ -14,7 +14,7 @@
     "dev": "nodemon -x ts-node -r tsconfig-paths/register src/app.ts",
     "start": "node -r ./tsconfig-paths.js dist/app.js",
     "build": "tsc -p . && tsc-alias",
-    "test": "jest --config jest.config.ts --verbose --silent",
+    "test": "jest --config jest.config.ts --verbose --silent --detectOpenHandles",
     "test:watch": "jest --config jest.config.ts --watchAll --verbose --silent"
   },
   "keywords": [],

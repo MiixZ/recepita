@@ -1,15 +1,24 @@
 import supertest from "supertest";
-import { app } from "../src/app";
 import { generalTest } from "./general/generalTest";
+import express from "express";
+import router from "../src/routes/router";
 import { recetaTest } from "./recetas/recetaTests";
 import { ingredienteTest } from "./ingredientes/ingredienteTests";
 import { execSync } from "child_process";
 
-const api = supertest(app);
-const server = app.listen();
+const app = express();
+
+app.use(express.json());
+app.use("/", router);
+
+const api = supertest.agent(app);
 
 beforeAll(() => {
   execSync("docker-compose up --build -d", { stdio: "inherit" });
+});
+
+afterAll(async () => {
+  execSync("docker-compose down", { stdio: "inherit" });
 });
 
 // GENERAL
@@ -62,8 +71,3 @@ test("Tests de ingredientes por nombre", async () =>
 
 test("Tests de ingredientes por nombre fallidos", async () =>
   await ingredienteTest.ingredienteByNombreTestFail(api));
-
-afterAll(() => {
-  // execSync("docker-compose down", { stdio: "inherit" });
-  server.close();
-});
