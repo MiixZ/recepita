@@ -120,3 +120,17 @@ Este fichero, situado en [compose.yml](../../compose.yml), define una infraestru
 
 - **app-network**:
   - Red personalizada definida para conectar todos los servicios (`backend`, `db`, `logserver`, y `grafana`). Esto permite que los servicios puedan comunicarse entre sí utilizando sus nombres como direcciones.
+
+## 📈 TESTS DEL CLÚSTER
+
+Se ha implementado un nuevo test de propósito general que comprueba si se han levantado correctamente los contenedores. Además, se ha agregado una ejecución antes de cualquier test para levantar el clúster de contenedores. Estos cambios pueden comprobarse en el fichero [general.test.ts](../../tests/general.test.ts).
+
+```typescript
+beforeAll(() => {
+  execSync("docker-compose up --build -d", { stdio: "inherit" });
+});
+
+test("Comprueba si los contenedores están levantados", async () => {
+  await generalTest.checkContainers();
+});
+```
