@@ -75,4 +75,4 @@ INSERT INTO RecetaIngrediente (id, receta_id, ingrediente_id, cantidad) VALUES
 (17, 4, 17, 100),
 (18, 4, 18, 100),
 (19, 4, 19, 30),
-(20, 4, 20, 20);
+(20, 4, 19, 20);
