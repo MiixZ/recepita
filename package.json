@@ -1,12 +1,9 @@
 {
-  "name": "@miixz/recepita",
+  "name": "@MiixZ/recepita",
   "version": "1.0.0",
   "description": "Aplicación para la gestión de recetas de cocina.",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "repository": "git+https://github.com/MiixZ/recepita"
-  },
+  "repository": "https://github.com/MiixZ/recepita.git",
   "publishConfig": {
     "@MiixZ:registry": "https://npm.pkg.github.com/"
   },
@@ -21,7 +18,6 @@
   "author": "Isma",
   "license": "ISC",
   "dependencies": {
-    "@miixz/recepita-package": "npm:@MiixZ/recepita-package@^1.0.0",
     "axios": "^1.7.9",
     "cors": "^2.8.5",
     "express": "^4.21.1",
