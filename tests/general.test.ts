@@ -4,14 +4,25 @@ import express from "express";
 import router from "../src/routes/router";
 import { recetaTest } from "./recetas/recetaTests";
 import { ingredienteTest } from "./ingredientes/ingredienteTests";
-import { execSync } from "child_process";
+import logger from "../src/public/logger";
 
 const app = express();
 
 app.use(express.json());
 app.use("/", router);
 
+const server = app.listen();
+
 const api = supertest.agent(app);
+
+afterAll((done) => {
+  server.close(() => {
+    if (logger.transports[0] && logger.transports[0].close) {
+      logger.transports[0].close();
+    }
+    done();
+  });
+});
 
 // GENERAL
 test("Devuelve un JSON", async () => await generalTest.generalTest(api));
