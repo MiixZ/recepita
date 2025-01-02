@@ -1,8 +1,15 @@
 {
-  "name": "recepita",
+  "name": "@miixz/recepita",
   "version": "1.0.0",
-  "description": "",
+  "description": "Aplicación para la gestión de recetas de cocina.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "repository": "git+https://github.com/MiixZ/recepita"
+  },
+  "publishConfig": {
+    "@MiixZ:registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "dev": "nodemon -x ts-node -r tsconfig-paths/register src/app.ts",
     "start": "node -r ./tsconfig-paths.js dist/app.js",
@@ -11,7 +18,7 @@
     "test:watch": "jest --config jest.config.ts --watchAll --verbose --silent"
   },
   "keywords": [],
-  "author": "",
+  "author": "Isma",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.9",
