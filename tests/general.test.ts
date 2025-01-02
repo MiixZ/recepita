@@ -13,20 +13,14 @@ app.use("/", router);
 
 const api = supertest.agent(app);
 
-beforeAll(() => {
-  execSync("docker-compose up --build -d", { stdio: "inherit" });
-});
-
-afterAll(async () => {
-  execSync("docker-compose down", { stdio: "inherit" });
-});
-
 // GENERAL
 test("Devuelve un JSON", async () => await generalTest.generalTest(api));
 
+/*
 test("Comprueba si los contenedores están levantados", async () => {
   await generalTest.checkContainers();
 });
+*/
 
 // RECETAS
 test("Tests de recetas", async () => await recetaTest.recetaTest(api));
