@@ -19,6 +19,7 @@ services:
       - logserver
     networks:
       - app-network
+    restart: always
 
   db:
     container_name: db
@@ -34,6 +35,7 @@ services:
       - dbdata:/var/lib/mariadb
     networks:
       - app-network
+    restart: always
 
   logserver:
     container_name: logserver
@@ -44,6 +46,7 @@ services:
       - loki-data:/loki
     networks:
       - app-network
+    restart: always
 
   grafana:
     container_name: grafana
@@ -54,6 +57,7 @@ services:
       - logserver
     networks:
       - app-network
+    restart: always
 
 volumes:
   dbdata:
