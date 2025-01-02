@@ -78,7 +78,7 @@ export class recetaTest extends generalTest {
   static async recetaByIngredienteTestReturnsNothing(api: TestAgent) {
     const responseApi = await this.getSucessfullApi(
       api,
-      "/recetas/ingrediente/queso"
+      "/recetas/ingrediente/bizcochitoDeFrambuesa"
     );
 
     const response: response = responseApi.body;

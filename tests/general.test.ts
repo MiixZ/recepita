@@ -1,56 +1,69 @@
 import supertest from "supertest";
-import { app, server } from "../src/app";
+import { app } from "../src/app";
 import { generalTest } from "./general/generalTest";
 import { recetaTest } from "./recetas/recetaTests";
 import { ingredienteTest } from "./ingredientes/ingredienteTests";
+import { execSync } from "child_process";
 
 const api = supertest(app);
+const server = app.listen();
+
+beforeAll(() => {
+  execSync("docker-compose up --build -d", { stdio: "inherit" });
+});
 
 // GENERAL
 test("Devuelve un JSON", async () => await generalTest.generalTest(api));
 
+test("Comprueba si los contenedores están levantados", async () => {
+  await generalTest.checkContainers();
+});
+
 // RECETAS
-test("Tests de recetas", async () => recetaTest.recetaTest(api));
+test("Tests de recetas", async () => await recetaTest.recetaTest(api));
 
-test("Tests de recetas fallidos", async () => recetaTest.recetaTestFail(api));
+test("Tests de recetas fallidos", async () =>
+  await recetaTest.recetaTestFail(api));
 
-test("Tests de recetas por ID", async () => recetaTest.recetaByIdTest(api));
+test("Tests de recetas por ID", async () =>
+  await recetaTest.recetaByIdTest(api));
 
 test("Tests de recetas por ID fallidos", async () =>
-  recetaTest.recetaByIdTestFail(api));
+  await recetaTest.recetaByIdTestFail(api));
 
 test("Tests de recetas por ingrediente", async () =>
-  recetaTest.recetaByIngredienteTest(api));
+  await recetaTest.recetaByIngredienteTest(api));
 
 test("Tests de recetas por ingrediente fallidos", async () =>
-  recetaTest.recetaByIngredienteTestFail(api));
+  await recetaTest.recetaByIngredienteTestFail(api));
 
 test("Tests de recetas por ingrediente que devuelven algo", async () =>
-  recetaTest.recetaByIngredienteReturnsSomething(api));
+  await recetaTest.recetaByIngredienteReturnsSomething(api));
 
 test("Tests de recetas por ingrediente que devuelven algo fallidos", async () =>
-  recetaTest.recetaByIngredienteTestReturnsNothing(api));
+  await recetaTest.recetaByIngredienteTestReturnsNothing(api));
 
 // INGREDIENTES
 
-test("Tests de ingredientes", async () => ingredienteTest.ingredienteTest(api));
+test("Tests de ingredientes", async () =>
+  await ingredienteTest.ingredienteTest(api));
 
 test("Tests de ingredientes fallidos", async () =>
-  ingredienteTest.ingredienteTestFail(api));
+  await ingredienteTest.ingredienteTestFail(api));
 
 test("Tests de ingredientes por ID", async () =>
-  ingredienteTest.ingredienteByIdTest(api));
+  await ingredienteTest.ingredienteByIdTest(api));
 
 test("Tests de ingredientes por ID fallidos", async () =>
-  ingredienteTest.ingredienteByIdTestFail(api));
+  await ingredienteTest.ingredienteByIdTestFail(api));
 
 test("Tests de ingredientes por nombre", async () =>
-  ingredienteTest.ingredienteByNombreTest(api));
+  await ingredienteTest.ingredienteByNombreTest(api));
 
 test("Tests de ingredientes por nombre fallidos", async () =>
-  ingredienteTest.ingredienteByNombreTestFail(api));
+  await ingredienteTest.ingredienteByNombreTestFail(api));
 
 afterAll(() => {
-  // TODO: Cerrar base de datos.
+  // execSync("docker-compose down", { stdio: "inherit" });
   server.close();
 });

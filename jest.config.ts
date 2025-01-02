@@ -11,6 +11,7 @@ const config: Config.InitialOptions = {
     "^@controllers/(.*)$": "<rootDir>/src/controllers/$1",
     "^@db/(.*)$": "<rootDir>/src/db/$1",
     "^@utils/(.*)$": "<rootDir>/src/utils/$1",
+    "^@mapper/(.*)$": "<rootDir>/src/mapper/$1",
   },
   transform: {
     "^.+\\.tsx?$": "ts-jest",
