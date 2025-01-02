@@ -3,7 +3,7 @@
     "target": "es2016",
     "module": "commonjs",
     "rootDir": "src",
-    "outDir": "dist",
+    "outDir": "./dist",
     "baseUrl": "src",
     "paths": {
       "@public/*": ["public/*"],
@@ -11,6 +11,7 @@
       "@models/*": ["models/*"],
       "@services/*": ["services/*"],
       "@controllers/*": ["controllers/*"],
+      "@mapper/*": ["mapper/*"],
       "@db/*": ["db/*"],
       "@utils/*": ["utils/*"]
     },

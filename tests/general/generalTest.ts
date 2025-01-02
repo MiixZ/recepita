@@ -1,4 +1,5 @@
 import TestAgent from "supertest/lib/agent";
+import { execSync } from "child_process";
 
 export class generalTest {
   // @ts-ignore
@@ -18,9 +19,22 @@ export class generalTest {
   }
 
   static async generalTest(api: TestAgent) {
-    await api
+    return await api
       .get("/")
       .expect(200)
       .expect("Content-Type", /application\/json/);
+  }
+
+  static async checkContainers() {
+    const result = execSync(
+      "docker ps --filter status=running --format '{{.Names}}'",
+      { encoding: "utf-8" }
+    );
+    expect(result).toContain("db");
+    expect(result).toContain("backend");
+    expect(result).toContain("logserver");
+    expect(result).toContain("grafana");
+
+    return result;
   }
 }

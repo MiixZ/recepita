@@ -26,4 +26,8 @@ La sección de pruebas y tests que se han realizado en el proyecto, se encuentra
 
 > Hito 3.
 
-La sección de pruebas y tests que se han realizado en el proyecto, se encuentran en el fichero [hito3.md](doc/hito3/hito3.md).
+La sección de integración continua que se han realizado en el proyecto, se encuentran en el fichero [hito3.md](doc/hito3/hito3.md).
+
+> Hito 4.
+
+La sección de la estructura de clúster de contenedores que se han realizado en el proyecto, se encuentran en el fichero [hito4.md](doc/hito4/hito4.md).

@@ -8,6 +8,21 @@ export interface Receta {
   kilocalorias: number;
 }
 
+export interface RecetaDB {
+  id: number;
+  nombre: string;
+  recomendacion: string;
+  peso: number;
+  tiempo_preparacion: number;
+}
+
+export interface RecetaIngredienteDB {
+  id: number;
+  id_receta: number;
+  id_ingrediente: number;
+  cantidad: number;
+}
+
 export function calcularKcalorias(receta: Receta): number {
   let kcal = 0;
 

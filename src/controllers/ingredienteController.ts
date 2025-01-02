@@ -8,7 +8,7 @@ import { sendError, sendSuccess } from "@utils/requestHandler";
 export class ingredienteController extends controller {
   static async getIngredientes(req: Request, res: Response) {
     try {
-      const ingredientes = ingredienteService.getIngredientes();
+      const ingredientes = await ingredienteService.getIngredientes();
 
       sendSuccess(res, ingredientes);
     } catch (error: any) {
@@ -20,7 +20,7 @@ export class ingredienteController extends controller {
     try {
       const id = req.params.id;
       const ingrediente: Ingrediente | null =
-        ingredienteService.getIngredienteById(id);
+        await ingredienteService.getIngredienteById(id);
 
       if (!ingrediente) {
         sendError(res, "Ingrediente no encontrado", 404);
@@ -36,7 +36,7 @@ export class ingredienteController extends controller {
     try {
       const nombre = req.params.nombre;
       const ingredientesByNombre =
-        ingredienteService.getIngredientesByNombre(nombre);
+        await ingredienteService.getIngredientesByNombre(nombre);
 
       sendSuccess(res, ingredientesByNombre);
     } catch (error: any) {

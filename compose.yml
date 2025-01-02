@@ -1,0 +1,68 @@
+services:
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=root_ps
+      - DB_NAME=recepita
+    depends_on:
+      - db
+      - logserver
+    networks:
+      - app-network
+    restart: always
+
+  db:
+    container_name: db
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: recepita
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_ps
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mariadb
+      - ./src/db:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+    restart: always
+
+  logserver:
+    container_name: logserver
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
+    volumes:
+      - loki-data:/loki
+    networks:
+      - app-network
+    restart: always
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    ports:
+      - "3200:3000"
+    depends_on:
+      - logserver
+    networks:
+      - app-network
+    restart: always
+
+volumes:
+  dbdata:
+  loki-data:
+
+networks:
+  app-network:

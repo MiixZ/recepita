@@ -4,16 +4,20 @@ import mysql2, {
   RowDataPacket,
 } from "mysql2/promise";
 
-import dotenv from "dotenv";
-
-dotenv.config();
+import {
+  DB_HOST,
+  DB_NAME,
+  DB_PASSWORD,
+  DB_PORT,
+  DB_USER,
+} from "@public/constants";
 
 const config: ConnectionOptions = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  port: Number(process.env.DB_PORT),
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  host: DB_HOST,
+  user: DB_USER,
+  port: Number(DB_PORT),
+  password: DB_PASSWORD,
+  database: DB_NAME,
   connectionLimit: 20,
   waitForConnections: true,
   queueLimit: 0,
