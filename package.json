@@ -1,12 +1,9 @@
 {
-  "name": "@miixz/recepita",
+  "name": "@MiixZ/recepita",
   "version": "1.0.0",
   "description": "Aplicación para la gestión de recetas de cocina.",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "repository": "git+https://github.com/MiixZ/recepita"
-  },
+  "repository": "https://github.com/MiixZ/recepita.git",
   "publishConfig": {
     "@MiixZ:registry": "https://npm.pkg.github.com/"
   },

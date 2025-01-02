@@ -161,3 +161,7 @@ Tests:       16 passed, 16 total
 Snapshots:   0 total
 Time:        8.212 s
 ```
+
+## 📦 GITHUB PACKAGES
+
+Se ha configurado el repositorio para que acepte el [paquete publicado](https://github.com/MiixZ/recepita-package/pkgs/npm/recepita-package).
