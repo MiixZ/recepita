@@ -134,3 +134,30 @@ test("Comprueba si los contenedores están levantados", async () => {
   await generalTest.checkContainers();
 });
 ```
+
+Un ejemplo de salida satisfactoria:
+
+```bash
+ PASS  tests/general.test.ts (8.122 s)
+  √ Devuelve un JSON (33 ms)
+  √ Comprueba si los contenedores están levantados (57 ms)
+  √ Tests de recetas (54 ms)
+  √ Tests de recetas fallidos (8 ms)
+  √ Tests de recetas por ID (10 ms)
+  √ Tests de recetas por ID fallidos (8 ms)
+  √ Tests de recetas por ingrediente (11 ms)
+  √ Tests de recetas por ingrediente fallidos (5 ms)
+  √ Tests de recetas por ingrediente que devuelven algo (7 ms)
+  √ Tests de recetas por ingrediente que devuelven algo fallidos (10 ms)
+  √ Tests de ingredientes (6 ms)
+  √ Tests de ingredientes fallidos (4 ms)
+  √ Tests de ingredientes por ID (6 ms)
+  √ Tests de ingredientes por ID fallidos (6 ms)
+  √ Tests de ingredientes por nombre (5 ms)
+  √ Tests de ingredientes por nombre fallidos (6 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       16 passed, 16 total
+Snapshots:   0 total
+Time:        8.212 s
+```
