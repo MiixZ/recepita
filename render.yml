@@ -1,0 +1,47 @@
+services:
+  - name: backend
+    type: web
+    env: docker
+    dockerfilePath: Dockerfile
+    envVars:
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_USER: root
+      DB_PASSWORD: root_ps
+      DB_NAME: recepita
+    skipDeploy: false
+    plan: free
+    ports:
+      - containerPort: 3000
+
+  - name: db
+    type: private
+    env: docker
+    dockerfilePath: Dockerfile
+    envVars:
+      MYSQL_ROOT_PASSWORD: root_ps
+      MYSQL_DATABASE: recepita
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_ps
+    plan: free
+    skipDeploy: false
+
+  - name: logserver
+    type: private
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    skipDeploy: false
+    ports:
+      - containerPort: 3100
+
+  - name: grafana
+    type: web
+    env: docker
+    dockerfilePath: Dockerfile
+    dependsOn:
+      - logserver
+    plan: free
+    skipDeploy: false
+    ports:
+      - containerPort: 3200
