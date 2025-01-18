@@ -50,4 +50,50 @@ Estas herramientas fueron elegidas por su capacidad de trabajar juntas sin neces
 
 ## DESCRIPCIÓN DE LA CONFIGURACIÓN PARA EL DESPLIEGUE AUTOMÁTICO
 
-Con el fichero [Dockerfile](../../Dockerfile) se construye la imagen Docker de la aplicación
+Con el fichero [Dockerfile](../../Dockerfile) se construye la imagen Docker de la aplicación principal. Como hemos usado render, para poder construir correctamente las imágenes de todos los contenedores, hemos tenido que añadir un fichero [render.yaml](../../render.yaml) con la configuración necesaria para el despliegue. Funciona de igual manera de docker-compose.
+
+Además, se integra automáticamente con GitHub, de manera que cada vez que se realiza un push a la rama `main`, Render construye y despliega la aplicación automáticamente. Estas configuraciones podemos verlas a continuación en las siguientes imágenes:
+
+![Render GitHub Integration](../../img/hito5/primera_configuración.png)
+
+![Render GitHub Integration](../../img/hito5/segunda_configuración.png)
+
+![Render GitHub Integration](../../img/hito5/variables_entorno.png)
+
+![Render GitHub Integration](../../img/hito5/docker.png)
+
+En el panel de Render:
+
+Se creó un nuevo servicio web seleccionando "Connect a Repository".
+Se vinculó el repositorio MiixZ/recepita.
+Render detectó automáticamente el archivo Dockerfile y configuró los pasos necesarios para construir y ejecutar el contenedor.
+Se configuraron variables de entorno necesarias (por ejemplo, PORT=3000).
+Será desplegado en Europa.
+
+La automatización del despliegue con cada commit a la rama `main` podemos comprobarlo con la siguiente imagen:
+
+![Render GitHub Integration](../../img/hito5/prueba_automatización.png)
+
+Y todos los servicios desplegados en Render:
+
+![Render GitHub Integration](../../img/hito5/despliegue_servicios.png)
+
+## FUNCIONAMIENTO CORRECTO DEL DESPLIEGUE
+
+Como ya hemos comprobado en imágenes anteriores, el despliegue se ha realizado correctamente y la aplicación está accesible en la [URL proporcionada](https://recepita.onrender.com/).
+
+Además, podemos comprobar el correcto funcionamiento en cuanto a peticiones con las siguientes imágenes:
+
+![Render GitHub Integration](../../img/hito5/prueba_despliegue_general.png)
+
+![Render GitHub Integration](../../img/hito5/prueba_despliegue.png)
+
+- La URL asignada por Render permite acceder a la API REST desde cualquier navegador o cliente HTTP (como Postman o cURL).
+- Los endpoints definidos en Express responden correctamente a las solicitudes HTTP (GET, POST, etc.).
+- El contenedor Docker se ejecuta sin errores gracias a la configuración adecuada del Dockerfile.
+
+## PRUEBA DE PRESTACIONES
+
+Con el plan gratuito, podemos ver el ancho de banda que se ha consumido. Hemos realizado algunas peticiones seguidas, teniendo un tiempo de respuesta prácticamente instantáneo y con la siguiente métrica:
+
+![Render GitHub Integration](../../img/hito5/prueba_prestaciones.png)

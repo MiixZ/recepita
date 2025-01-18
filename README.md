@@ -31,3 +31,7 @@ La sección de integración continua que se han realizado en el proyecto, se enc
 > Hito 4.
 
 La sección de la estructura de clúster de contenedores que se han realizado en el proyecto, se encuentran en el fichero [hito4.md](doc/hito4/hito4.md).
+
+> Hito 5.
+
+La sección de la descripción y justificación del despliegue de la aplicación, se encuentran en el fichero [hito5.md](doc/hito5/hito5.md).
