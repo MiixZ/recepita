@@ -1,0 +1,47 @@
+services:
+  - name: backend
+    type: web
+    dockerfilePath: Dockerfile
+    runtime: node
+    envVars:
+      - key: DB_HOST
+        value: db
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_USER
+        value: root
+      - key: DB_PASSWORD
+        value: root_ps
+      - key: DB_NAME
+        value: recepita
+    plan: free
+
+  - name: db
+    type: cron
+    dockerfilePath: Dockerfile
+    runtime: docker
+    schedule: "@daily"
+    envVars:
+      - key: MYSQL_ROOT_PASSWORD
+        value: root_ps
+      - key: MYSQL_DATABASE
+        value: recepita
+      - key: MYSQL_USER
+        value: user
+      - key: MYSQL_PASSWORD
+        value: user_ps
+    plan: free
+
+  - name: logserver
+    type: cron
+    runtime: docker
+    schedule: "@daily"
+    dockerfilePath: Dockerfile
+    plan: free
+
+  - name: grafana
+    type: cron
+    runtime: docker
+    schedule: "@daily"
+    dockerfilePath: Dockerfile
+    plan: free
