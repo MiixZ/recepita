@@ -1,8 +1,8 @@
 services:
   - name: backend
     type: web
+    runtime: docker
     dockerfilePath: Dockerfile
-    runtime: node
     envVars:
       - key: DB_HOST
         value: db
@@ -18,8 +18,8 @@ services:
 
   - name: db
     type: cron
-    dockerfilePath: Dockerfile
     runtime: docker
+    dockerfilePath: Dockerfile
     schedule: "@daily"
     envVars:
       - key: MYSQL_ROOT_PASSWORD
@@ -30,18 +30,15 @@ services:
         value: user
       - key: MYSQL_PASSWORD
         value: user_ps
-    plan: free
 
   - name: logserver
     type: cron
     runtime: docker
-    schedule: "@daily"
     dockerfilePath: Dockerfile
-    plan: free
+    schedule: "@daily"
 
   - name: grafana
     type: cron
     runtime: docker
-    schedule: "@daily"
     dockerfilePath: Dockerfile
-    plan: free
+    schedule: "@daily"
