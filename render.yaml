@@ -1,26 +1,27 @@
 services:
-  - name: backend
-    type: web
+  - type: web
+    name: recepita-backend
     runtime: docker
-    dockerfilePath: Dockerfile
+    dockerfilePath: ./backend/Dockerfile
+    branch: main
+    healthCheckPath: /
+    autoDeploy: true
     envVars:
       - key: DB_HOST
-        value: db
+        value: recepita-db
       - key: DB_PORT
-        value: "3306"
+        value: 3306
       - key: DB_USER
         value: root
       - key: DB_PASSWORD
         value: root_ps
       - key: DB_NAME
         value: recepita
-    plan: free
 
-  - name: db
-    type: cron
+  - type: web
+    name: recepita-db-mariadb
     runtime: docker
-    dockerfilePath: Dockerfile
-    schedule: "@daily"
+    dockerCommand: mariadb:latest
     envVars:
       - key: MYSQL_ROOT_PASSWORD
         value: root_ps
@@ -31,14 +32,14 @@ services:
       - key: MYSQL_PASSWORD
         value: user_ps
 
-  - name: logserver
-    type: cron
+  - type: web
+    name: logserver-loki
     runtime: docker
-    dockerfilePath: Dockerfile
-    schedule: "@daily"
+    dockerCommand: grafana/loki:latest
+    autoDeploy: true
 
-  - name: grafana
-    type: cron
+  - type: web
+    name: grafana-dashboard
     runtime: docker
-    dockerfilePath: Dockerfile
-    schedule: "@daily"
+    dockerCommand: grafana/grafana:latest
+    autoDeploy: true
